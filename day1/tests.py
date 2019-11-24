@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from fuelcalulation import resolve_fuel, resolve_total_fuel, calculate_mass_fuel
+from fuelcalulation import resolve_fuel, resolve_total_fuel
 
 
 def test_12_resolves_to_2():

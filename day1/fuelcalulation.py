@@ -21,8 +21,8 @@ def resolve_total_fuel(mass: int) -> int:
     return total_fuel
 
 
-def calculate_mass_fuel(elements_mass: List[int], with_extra_mass: bool = False) -> int:
-    fuel_calculation_method = resolve_total_fuel if with_extra_mass else resolve_fuel
+def calculate_mass_fuel(elements_mass: List[int], calculation_method) -> int:
+    return sum(map(calculation_method, elements_mass))
 
-    return sum(map(fuel_calculation_method, elements_mass))
 
+CALCULATION_METHODS = {'simple': resolve_fuel, 'total': resolve_total_fuel}
