@@ -30,11 +30,6 @@ def test_resolve_total_fuel_100756_to_50346():
     assert resolve_total_fuel(100756) == 50346
 
 
-def test_correct_result():
-    data = open('input')
-    assert calculate_mass_fuel(data) == 3282935
-
-
 if __name__ == "__main__":
     test_12_resolves_to_2()
     test_14_resolves_to_2()
@@ -43,6 +38,4 @@ if __name__ == "__main__":
     test_resolve_total_fuel_14_to_2
     test_resolve_total_fuel_1969_to_966()
     test_resolve_total_fuel_100756_to_50346()
-
-    test_correct_result()
 
