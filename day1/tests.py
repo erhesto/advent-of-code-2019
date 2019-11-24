@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from day1 import resolve_fuel
+from day1 import resolve_fuel, calculate_mass_fuel
 
 
 def test_12_resolves_to_2():
@@ -18,8 +18,14 @@ def test_100756_resolves_to_33583():
     assert resolve_fuel(100756) == 33583
 
 
+def test_correct_result():
+    data = open('input')
+    assert calculate_mass_fuel(data) == 3282935
+
+
 if __name__ == "__main__":
     test_12_resolves_to_2()
     test_14_resolves_to_2()
     test_1969_resolves_to_654()
     test_100756_resolves_to_33583()
+    test_correct_result()
