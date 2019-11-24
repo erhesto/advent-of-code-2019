@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import List
 
 
@@ -25,4 +26,7 @@ def calculate_mass_fuel(elements_mass: List[int], calculation_method) -> int:
     return sum(map(calculation_method, elements_mass))
 
 
-CALCULATION_METHODS = {'simple': resolve_fuel, 'total': resolve_total_fuel}
+class CalculationMethods(Enum):
+    SIMPLE = resolve_fuel
+    TOTAL = resolve_total_fuel
+
