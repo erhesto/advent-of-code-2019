@@ -1,4 +1,4 @@
-from day1 import calculate_mass_fuel
+from fuelcalulation import calculate_mass_fuel
 from helpers import prepare_data
 
 
