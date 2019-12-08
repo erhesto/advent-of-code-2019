@@ -23,10 +23,12 @@ def resolve_total_fuel(mass: int) -> int:
 
 
 def calculate_mass_fuel(elements_mass: List[int], calculation_method) -> int:
+    """
+    Main method for calculating fuel mass from collection of elements. 
+    """
     return sum(map(calculation_method, elements_mass))
 
 
 class CalculationMethods(Enum):
     SIMPLE = resolve_fuel
     TOTAL = resolve_total_fuel
-
