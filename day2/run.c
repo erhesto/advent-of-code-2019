@@ -6,7 +6,8 @@
 
 int count_delim(char *input, char delim) {
 	int arr_size = 1;
-	for (int k = 0; k < BUFF_SIZE; k++) {
+	int length = strlen(input);
+	for (int k = 0; k < length; k++) {
 		if (input[k] == delim) arr_size++;
 	}
 	return arr_size;
@@ -27,7 +28,7 @@ int *create_array_from_string(char *input, char delim, int arr_sz) {
 	}
 	else {
 		token = strtok(input, delimiter);
-		while (arr_index < arr_sz) {
+		while (arr_index < arr_sz && token) {
 			arr_ptr[arr_index] = atoi(token);
 			arr_index++;
 			token = strtok(NULL, delimiter);
