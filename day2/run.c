@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #define BUFF_SIZE 2048
-
+#define TEST_SIZE 99
+#define SUCCESS 19690720
 
 int count_delim(char *input, char delim) {
 	int arr_size = 1;
@@ -15,7 +16,9 @@ int count_delim(char *input, char delim) {
 
 
 int *create_array_from_string(char *input, char delim, int arr_sz) {
-	int* arr_ptr;
+	char dest[strlen(input)];
+	strcpy(dest, input);
+	int *arr_ptr;
 	int arr_index = 0;
 	const char delimiter[2] = {delim, '\0'};
 	char *token;
@@ -27,7 +30,7 @@ int *create_array_from_string(char *input, char delim, int arr_sz) {
 		exit(0);
 	}
 	else {
-		token = strtok(input, delimiter);
+		token = strtok(dest, delimiter);
 		while (arr_index < arr_sz && token) {
 			arr_ptr[arr_index] = atoi(token);
 			arr_index++;
@@ -52,7 +55,7 @@ int compute_result(int *arr) {
 	int method = arr[start_pos];
 	int (*method_ptr)(int, int);
 
-	while (method != 99) { 
+	while (method == 1 || method == 2) { 
 		switch (method) {
 			case 1:
 				method_ptr = add;
@@ -83,22 +86,41 @@ int compute_result(int *arr) {
 }
 
 
-int main(int argc, char *argv[]) {
-	char buff[BUFF_SIZE];
-	char delim = ',';
+int do_computation(int input1, int input2, char *input) {
 	int *arr;
 	int arr_sz;
+	char delim = ',';
 	int result;
-	FILE *f = fopen("input", "r");
-	fgets(buff, BUFF_SIZE, f);
 
-	arr_sz = count_delim(buff, delim);
-	arr = create_array_from_string(buff, delim, arr_sz);
+	arr_sz = count_delim(input, delim);
+
+	arr = create_array_from_string(input, delim, arr_sz);
+	arr[1] = input1;
+	arr[2] = input2;
 
 	result = compute_result(arr);
-	printf("Result: %d\n", result);
+
 	free(arr);
+	return result;
+}
+
+
+int main(int argc, char *argv[]) {
+	int result;
+	char buff[BUFF_SIZE];
+	FILE *f = fopen("input", "r");
+	fgets(buff, BUFF_SIZE, f);
 	fclose(f);
+
+	for (int i = 0; i < TEST_SIZE; i++) {
+		for (int j = 0; j < TEST_SIZE; j++) {
+			result = do_computation(i, j, buff);
+			if (result == SUCCESS) {
+				printf("Success for %d, %d\n", i, j);
+				exit(0);
+			}
+		}
+	}
 
 	return 0;
 }
