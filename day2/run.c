@@ -6,6 +6,7 @@
 #define SUCCESS 19690720
 
 int count_delim(char *input, char delim) {
+	printf("%d", 1);
 	int arr_size = 1;
 	int length = strlen(input);
 	for (int k = 0; k < length; k++) {
